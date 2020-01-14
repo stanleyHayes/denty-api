@@ -17,8 +17,7 @@ const AppointmentSchema = new Schema({
     },
     dentist: {
         type: Schema.Types.ObjectId,
-        ref: "User",
-        required: true
+        ref: "User"
     },
     date_created: {
         type: Date,

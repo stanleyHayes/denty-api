@@ -102,7 +102,7 @@ router.put("/:appointmentID/toggle-assign", async function (req, res, next) {
         const appointmentID = req.params.appointmentID;
         let appointment = await Appointment.findById(appointmentID);
         const dentistID = req.body.dentistID;
-        //if article not found
+        //if appointment not found
         if (!appointment) {
             return res.status(404).json({error: "Appointment not found"});
         } else {

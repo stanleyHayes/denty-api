@@ -6,6 +6,11 @@ const bodyParser = require("body-parser");
 const helmet = require("helmet");
 const cors = require("cors");
 
+const UserRoutes = require("./routes/Users");
+const AppointmentRoutes = require("./routes/Appointments");
+const RecordRoutes = require("./routes/Records");
+const ArticleRoutes = require("./routes/Articles");
+
 dotenv.config();
 
 const app = express();
@@ -26,6 +31,11 @@ app.use(helmet());
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+
+app.use("/api/v1/users", UserRoutes);
+app.use("/api/v1/articles", ArticleRoutes);
+app.use("/api/v1/appointments", AppointmentRoutes);
+app.use("/api/v1/records", RecordRoutes);
 
 app.listen(process.env.PORT, function () {
     console.log(`Server connected on port ${process.env.PORT}`);

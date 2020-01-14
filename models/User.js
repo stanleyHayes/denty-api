@@ -17,7 +17,8 @@ const UserSchema = new Schema({
     },
     role: {
         type: String,
-        required: true
+        required: true,
+        enum: ["Patient", "Dentist"]
     },
     dob: {
         type: Date,
@@ -31,6 +32,11 @@ const UserSchema = new Schema({
         coordinates: {
             type: [Number]
         }
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true
     }
 });
 

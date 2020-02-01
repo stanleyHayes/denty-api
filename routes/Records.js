@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Record = require("../models/Record");
+const User = require("../models/User");
 
 //creating a record
 //status code 201 successful record creation
@@ -14,6 +15,12 @@ router.post("/", async function (req, res, next) {
             dentist: req.body.dentist
         };
         const createdRecord = await Record.create(record);
+        const dentist = await User.findById(req.body.dentist);
+        const patient = await User.findById(req.body.patient);
+        patient.appointments.push(createdRecord._id);
+        patient.save();
+        dentist.appointments.push(createdRecord._id);
+        dentist.save();
         return res.status(201).json({record: createdRecord});
     } catch (e) {
         return res.status(500).json({error: e.message});

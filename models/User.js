@@ -21,8 +21,7 @@ const UserSchema = new Schema({
         enum: ["Patient", "Dentist"]
     },
     dob: {
-        type: Date,
-        required: true
+        type: Date
     },
     location: {
         type: {
@@ -37,6 +36,15 @@ const UserSchema = new Schema({
         type: String,
         required: true,
         unique: true
+    },
+    articles: {
+        type: [Schema.Types.ObjectId]
+    },
+    appointments: {
+        type: [Schema.Types.ObjectId]
+    },
+    records: {
+        type: [Schema.Types.ObjectId]
     }
 });
 

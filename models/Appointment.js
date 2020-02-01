@@ -25,7 +25,7 @@ const AppointmentSchema = new Schema({
     },
     status: {
         type: String,
-        enum: ["vacant", "assigned"],
+        enum: ["vacant", "assigned", "resolved"],
         default: "vacant"
     }
 });

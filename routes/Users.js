@@ -30,7 +30,6 @@ router.post("/register", async function (req, res, next) {
             phone: req.body.phone,
             role: req.body.role,
             dob: req.body.dob,
-            location: req.body.location,
             password: await hashPassword(req.body.password)
         };
 

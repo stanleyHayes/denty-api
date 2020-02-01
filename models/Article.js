@@ -11,7 +11,7 @@ const ArticleSchema = new Schema({
         ref: "User",
         required: true
     },
-    image_uri: {
+    image: {
         type: String,
         required: true
     },
@@ -32,13 +32,17 @@ const ArticleSchema = new Schema({
         type: [String],
         required: true
     },
-    date_posted: {
+    published_date: {
         type: Date,
         default: Date.now
     },
     date_modified: {
         type: Date,
         default: Date.now
+    },
+    caption: {
+        type: String,
+        required: true
     }
 });
 

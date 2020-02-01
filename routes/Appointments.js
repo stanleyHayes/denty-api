@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const Appointment = require("../models/Appointment");
+const User = require("../models/User");
 
 //booking an appointment
 //status code 201 successful appointment booking
@@ -15,6 +16,12 @@ router.post("/", async function (req, res, next) {
             dentist: req.body.dentist,
         };
         const createdAppointment = await Appointment.create(appointment);
+        const patient = await User.findById(req.body.patient);
+        const dentist = await User.findById(req.body.dentist);
+        patient.appointments.push(createdAppointment._id);
+        patient.save();
+        dentist.appointments.push(createdAppointment._id);
+        dentist.save();
         return res.status(201).json({appointment: createdAppointment});
     } catch (e) {
         return res.status(500).json({error: e.message});

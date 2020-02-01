@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Article = require("../models/Article");
+const User = require("../models/User");
 
 //creating an article
 //status code 201 successful article creation
@@ -10,13 +11,18 @@ router.post("/", async function (req, res, next) {
         const article = {
             title: req.body.title,
             author: req.body.author,
-            image_uri: req.body.image_uri,
+            image: req.body.image,
             causes: req.body.causes,
             treatment: req.body.treatment,
             symptoms: req.body.symptoms,
-            prevention: req.body.prevention
+            prevention: req.body.prevention,
+            caption: req.body.caption
         };
+
         const createdArticle = await Article.create(article);
+        const user = await User.findById(req.body.author);
+        user.articles.push(await createdArticle._id);
+        user.save();
         return res.status(201).json({article: createdArticle});
     } catch (e) {
         return res.status(500).json({error: e.message});

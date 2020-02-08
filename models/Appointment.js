@@ -10,6 +10,10 @@ const AppointmentSchema = new Schema({
         type: Date,
         required: true
     },
+    title: {
+        type: String,
+        required: true
+    },
     patient: {
         type: Schema.Types.ObjectId,
         ref: "User",

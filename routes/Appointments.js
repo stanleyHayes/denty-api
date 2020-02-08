@@ -13,15 +13,12 @@ router.post("/", async function (req, res, next) {
             description: req.body.description,
             appointment_date: req.body.appointment_date,
             patient: req.body.patient,
-            dentist: req.body.dentist,
+            title: req.body.title
         };
         const createdAppointment = await Appointment.create(appointment);
         const patient = await User.findById(req.body.patient);
-        const dentist = await User.findById(req.body.dentist);
         patient.appointments.push(createdAppointment._id);
         patient.save();
-        dentist.appointments.push(createdAppointment._id);
-        dentist.save();
         return res.status(201).json({appointment: createdAppointment});
     } catch (e) {
         return res.status(500).json({error: e.message});
@@ -93,7 +90,8 @@ router.get("/:appointmentID", async function (req, res, next) {
 router.get("/", async function (req, res, next) {
     try {
         const queryParams = req.query;
-        const appointments = await Appointment.find(queryParams);
+        const appointments = await Appointment.find(queryParams).populate("patient");
+        console.log(appointments);
         return res.status(200).json({appointments: appointments});
     } catch (e) {
         return res.status(500).json({error: e.message});

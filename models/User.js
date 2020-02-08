@@ -21,7 +21,8 @@ const UserSchema = new Schema({
         enum: ["Patient", "Dentist"]
     },
     dob: {
-        type: Date
+        type: Date,
+        required: true
     },
     location: {
         type: {

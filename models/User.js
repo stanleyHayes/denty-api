@@ -45,6 +45,9 @@ const UserSchema = new Schema({
     },
     records: {
         type: [Schema.Types.ObjectId]
+    },
+    image: {
+        type: String
     }
 });
 

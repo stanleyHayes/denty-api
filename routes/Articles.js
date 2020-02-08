@@ -13,9 +13,9 @@ router.post("/", async function (req, res, next) {
             author: req.body.author,
             image: req.body.image,
             causes: req.body.causes,
-            treatment: req.body.treatment,
+            treatments: req.body.treatments,
             symptoms: req.body.symptoms,
-            prevention: req.body.prevention,
+            preventions: req.body.preventions,
             caption: req.body.caption
         };
 

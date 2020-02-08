@@ -19,7 +19,7 @@ const ArticleSchema = new Schema({
         type: [String],
         required: true
     },
-    treatment: {
+    treatments: {
         type: [String],
         required: true
     }
@@ -28,7 +28,7 @@ const ArticleSchema = new Schema({
         type: [String],
         required: true
     },
-    prevention: {
+    preventions: {
         type: [String],
         required: true
     },
